@@ -208,3 +208,6 @@ __marimo__/
 
 # Test EAIP data
 test_eaip/
+
+# Demo data
+demo_eaip/
