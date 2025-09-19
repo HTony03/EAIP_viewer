@@ -8,25 +8,16 @@
    cd EAIP_viewer
    ```
 
-2. **Install system dependencies:**
+2. **Install dependencies:**
    ```bash
-   # Ubuntu/Debian
-   sudo apt install python3-tk python3-pil python3-pil.imagetk
-
-   # Or for other systems, ensure you have:
-   # - Python 3.7+
-   # - tkinter (usually included with Python)
-   # - PIL/Pillow with ImageTk support
+   pip install -r requirements.txt
    ```
+   
+   **Note**: The application now uses PySide6 (Qt6) for a modern GUI experience.
 
-3. **Install Python packages:**
+3. **Run the application:**
    ```bash
-   pip3 install -r requirements.txt
-   ```
-
-4. **Run the application:**
-   ```bash
-   python3 eaip_viewer.py
+   python eaip_viewer.py
    ```
 
 ## Usage Instructions
@@ -64,6 +55,23 @@ Charts are automatically organized into categories based on their file paths:
 4. **Zoom**: Use mouse wheel to zoom in/out on image charts
 5. **External**: Click "Open in External Viewer" for full-screen viewing
 
+## Qt6 Features
+
+### Modern Interface Benefits
+
+- **Native Look**: Professional appearance on Windows, macOS, and Linux
+- **High-DPI Support**: Perfect scaling on high-resolution displays
+- **Smooth Performance**: Hardware-accelerated rendering
+- **Responsive UI**: Non-blocking data loading with progress feedback
+- **Better File Dialogs**: Native system file selection dialogs
+
+### Enhanced Image Viewer
+
+- **Smooth Zooming**: Mouse wheel zoom with proper scaling
+- **Scroll Support**: Navigate large charts with automatic scrollbars
+- **Auto-fit**: Charts automatically fit to window size
+- **Quality Rendering**: High-quality image scaling with Qt's rendering engine
+
 ## Future Features
 
 ### XPUIPC Integration (Planned)
@@ -84,33 +92,36 @@ To enable this feature when implemented:
 
 ### Common Issues
 
-1. **"No module named 'tkinter'"**
-   - Install python3-tk: `sudo apt install python3-tk`
+1. **"No module named 'PySide6'"**
+   - Install PySide6: `pip install PySide6`
+   - Or install all requirements: `pip install -r requirements.txt`
 
-2. **"cannot import name 'ImageTk'"**
-   - Install PIL ImageTk: `sudo apt install python3-pil.imagetk`
-
-3. **Charts not loading**
+2. **Charts not loading**
    - Ensure EAIP files are in supported formats (PNG, JPG, PDF, etc.)
    - Check file permissions
    - Verify directory structure
 
-4. **External viewer not working**
+3. **External viewer not working**
    - Ensure you have appropriate viewers installed (PDF reader, image viewer)
    - Check system file associations
 
+4. **UI scaling issues on high-DPI displays**
+   - Qt6 automatically handles high-DPI scaling
+   - If issues persist, try setting environment variable: `QT_AUTO_SCREEN_SCALE_FACTOR=1`
+
 ### Performance Tips
 
-- For large EAIP archives, extraction may take time
+- For large EAIP archives, extraction may take time (loading happens in background thread)
 - Image charts load faster than PDFs
 - Search is case-insensitive and searches both names and filenames
+- Qt6 provides better memory management for large chart files
 
 ## Development
 
 ### Running Tests
 
 ```bash
-python3 -m unittest tests.test_eaip_handler -v
+python -m unittest tests.test_eaip_handler -v
 ```
 
 ### Project Structure
@@ -118,15 +129,24 @@ python3 -m unittest tests.test_eaip_handler -v
 ```
 EAIP_viewer/
 ├── src/                     # Source code
-│   ├── main.py             # Main application
+│   ├── main.py             # Main Qt6 application
 │   ├── eaip_handler.py     # EAIP data processing
-│   ├── chart_viewer.py     # Chart display GUI
+│   ├── chart_viewer.py     # Qt6-based chart display GUI
 │   └── xpuipc_integration.py # Future X-Plane integration
 ├── tests/                   # Unit tests
 ├── eaip_viewer.py          # Launch script
-├── requirements.txt        # Python dependencies
+├── requirements.txt        # Python dependencies (includes PySide6)
 └── README.md              # Documentation
 ```
+
+### Qt6 Architecture
+
+The application uses modern Qt6 patterns:
+- **QMainWindow**: Main application window with menu bar and status bar
+- **QTreeWidget**: Chart list with search and categorization
+- **Custom ImageViewer**: QLabel-based image viewer with zoom capabilities
+- **QThread**: Background loading to keep UI responsive
+- **Signal/Slot**: Event handling for user interactions
 
 ### Contributing
 

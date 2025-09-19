@@ -2,6 +2,8 @@
 
 A local aviation chart viewer for CAAC EAIP (Electronic Aeronautical Information Publication), providing a similar experience to ChartFox application.
 
+**Built with PySide6 (Qt6)** for a modern, cross-platform GUI experience.
+
 ## Features
 
 - **Multi-format Support**: Read both ZIP files and unzipped EAIP directories
@@ -10,6 +12,7 @@ A local aviation chart viewer for CAAC EAIP (Electronic Aeronautical Information
 - **Image Viewer**: Built-in image viewer with zoom capabilities
 - **External Viewer**: Open charts in external applications (PDF viewers, image viewers)
 - **Future Ready**: Prepared for XPUIPC integration to display airplane location on maps
+- **Modern Qt6 Interface**: Professional, native-looking GUI across Windows, macOS, and Linux
 
 ## Installation
 
@@ -23,6 +26,8 @@ cd EAIP_viewer
 ```bash
 pip install -r requirements.txt
 ```
+
+**Note**: The application now uses PySide6 (Qt6) instead of tkinter for a more modern and professional interface.
 
 ## Usage
 
@@ -47,7 +52,7 @@ python eaip_viewer.py
 
 ## Supported File Types
 
-- **Images**: PNG, JPG, JPEG, GIF, TIF, TIFF
+- **Images**: PNG, JPG, JPEG, GIF, TIF, TIFF (displayed in built-in viewer)
 - **Documents**: PDF (opens in external viewer)
 - **Other**: Any file type can be opened in external applications
 
@@ -73,9 +78,18 @@ The application automatically categorizes charts based on their location and fil
 ## Requirements
 
 - Python 3.7+
-- tkinter (usually included with Python)
+- PySide6 (Qt6) for GUI
 - Pillow (PIL) for image handling
 - See `requirements.txt` for complete list
+
+## Qt6 Benefits
+
+The migration to PySide6 (Qt6) provides:
+- **Better Performance**: Faster rendering and smoother interactions
+- **Modern Look**: Native appearance on all platforms
+- **Improved Scaling**: Better high-DPI display support
+- **Threading**: Non-blocking EAIP data loading
+- **Professional UI**: More responsive and polished interface
 
 ## License
 
